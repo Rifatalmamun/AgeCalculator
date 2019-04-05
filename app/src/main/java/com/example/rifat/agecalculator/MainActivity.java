@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatePickerDialog current_Date_Picker;
     private DatePickerDialog birth_Date_Picker;
+
+    int month[]={31,28,31,30,31,30,31,31,30,31,30,31};  // define a string for all month day count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         clearButton=(Button)findViewById(R.id.ClearButton_id);
         currentDateCalenderPickerButton=(Button)findViewById(R.id.CurrentDataCalender_id);
         birthDateCalenderPickerButton=(Button)findViewById(R.id.BirthDateCalender_id);
+
+
+        // apps ta on hole sob value first a empty dekhabe
+        birthDateDay.setText("");
+        birthDateMonth.setText("");
+        birthDateYear.setText("");
+        yearResult.setText("0 Year");
+        monthResult.setText("0 Month");
+        dayResult.setText("0 Day");
+        nextMonthResult.setText("0 Month");
+        nextDayResult.setText("0 Day");
 
         // now set OnClicklistener............................................................
         currentDateCalenderPickerButton.setOnClickListener(this);
@@ -113,12 +126,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int bYear=Integer.parseInt(takeBirthYear);
 
                 if(bDay>cDay){
-                    cDay=cDay+30;
-                    bMonth=bMonth+1;
+                    cDay=cDay+month[bMonth-1];
+                    cMonth=cMonth-1;
                 }
                 if(bMonth>cMonth){
+                    cYear=cYear-1;
                     cMonth=cMonth+12;
-                    bYear=bYear+1;
                 }
 
                 int F_day=(cDay-bDay);
@@ -133,14 +146,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 monthResult.setText(finalMonth+" Month");
                 dayResult.setText(finalDay+" Day");
 
+                extraINformationFunction(finalYear,finalMonth,finalDay);
+
             }
         }
         if(v.getId()==R.id.ClearButton_id){
             birthDateDay.setText("");
             birthDateMonth.setText("");
             birthDateYear.setText("");
+            yearResult.setText("0 Year");
+            monthResult.setText("0 Month");
+            dayResult.setText("0 Day");
+            nextMonthResult.setText("0 Month");
+            nextDayResult.setText("0 Day");
         }
     }
+
     // this is OpenCurrentDatePicker method....................................
     //.........................................................................
     private void openCurrentDatePicker() {
@@ -194,5 +215,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 },birthYear,birthMonth,birthDay);
 
         birth_Date_Picker.show();
+    }
+    // Extra Information method.....................................................................
+    private void extraINformationFunction(String f_year,String f_month,String f_day) {
+
+        int exYear=Integer.parseInt(f_year);
+        int exMonth=Integer.parseInt(f_month);
+        int exDay=Integer.parseInt(f_day);
+        int exWeek;
+
+
+
+
     }
 }

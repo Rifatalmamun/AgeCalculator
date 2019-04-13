@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String takeBirthMonth=birthDateMonth.getText().toString();
             String takeBirthYear=birthDateYear.getText().toString();
 
+
             if(takeBirthDay.isEmpty() || takeBirthMonth.isEmpty() || takeBirthYear.isEmpty()){
 
                 Toast.makeText(getApplicationContext(), "Please Input DOB", Toast.LENGTH_SHORT).show();
@@ -124,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int bDay=Integer.parseInt(takeBirthDay);
                 int bMonth=Integer.parseInt(takeBirthMonth);
                 int bYear=Integer.parseInt(takeBirthYear);
+
+                extraInformationMethod(bDay,bMonth,bYear,cDay,cMonth,cYear); ////////////////////////////////////////////////////////
 
                 if(bDay>cDay){
                     cDay=cDay+month[bMonth-1];
@@ -146,7 +149,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 monthResult.setText(finalMonth+" Month");
                 dayResult.setText(finalDay+" Day");
 
-                extraINformationFunction(finalYear,finalMonth,finalDay);
+               // extraINformationFunction(finalYear,finalMonth,finalDay);
+
+                extraYearResult.setText(finalYear);
+                extraMonthResult.setText(finalMonth);
 
             }
         }
@@ -217,15 +223,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         birth_Date_Picker.show();
     }
     // Extra Information method.....................................................................
-    private void extraINformationFunction(String f_year,String f_month,String f_day) {
 
-        int exYear=Integer.parseInt(f_year);
-        int exMonth=Integer.parseInt(f_month);
-        int exDay=Integer.parseInt(f_day);
-        int exWeek;
+    public void extraInformationMethod(int BirthDD,int BirthDM,int BirthDY,int CurrentDD,int CurrentDM,int CurrentDY)
+    {
+
+        //..................................First work for Birthday leapyear count
+
+        int n1 = BirthDY*365 + BirthDD;  // birth date er year k din a convert kore day gulo jog korlam
+
+        for(int i= 0;i<BirthDM-1;i++){
+            n1+=month[i];                // total er sathe month er day gulo jog korlam
+        }
+
+        int BleapDay = leapyear(BirthDD,BirthDM,BirthDY);
+
+        int totalBirthDay = n1 + BleapDay;
+
+        //..................................Second work for Currenthday leapyear count
+
+        int n2 = CurrentDY*365 + CurrentDD;
+        for (int i=0;i<CurrentDM-1;i++){
+            n2+=month[i];
+        }
+
+        int CleapDay = leapyear(CurrentDD,CurrentDM,CurrentDY);
+        int totalCurrentDay = n2 + CleapDay;
+
+        int extraDay = totalCurrentDay - totalBirthDay ;
+
+        //Toast.makeText(getApplicationContext(),"Extra Day: "+extraDay,Toast.LENGTH_LONG).show();
+
+        int extraWeek = extraDay / 7;
+        int extraHour = extraDay * 24;
+        int extraMinute = extraDay * 1440;
+        int extraSecond = extraDay * 86400 ;
 
 
+        String ExtraDay = Integer.toString(extraDay);
+        String ExtraWeek = Integer.toString(extraWeek);
+        String ExtraHour = Integer.toString(extraHour);
+        String ExtraMinute = Integer.toString(extraMinute);
+        String ExtraSecond = Integer.toString(extraSecond);
 
+        extraDayResult.setText(ExtraDay);
+        extraWeakResult.setText(ExtraWeek);
+        extraHourResult.setText(ExtraHour);
+        extraMinuteResult.setText(ExtraMinute);
+        extraSecondResult.setText(ExtraSecond);
 
+    }
+
+    public int leapyear(int d,int m,int y){
+
+        if(m<2){
+            y--;
+        }
+        return y/4 - y/100 + y/400 ;
     }
 }

@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int bMonth=Integer.parseInt(takeBirthMonth);
                 int bYear=Integer.parseInt(takeBirthYear);
 
-                extraInformationMethod(bDay,bMonth,bYear,cDay,cMonth,cYear); ////////////////////////////////////////////////////////
+                extraInformationMethod(bDay,bMonth,bYear,cDay,cMonth,cYear);
 
                 if(bDay>cDay){
                     cDay=cDay+month[bMonth-1];
@@ -141,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int F_month=(cMonth-bMonth);
                 int F_year=(cYear-bYear);
 
+                int E_Month = (F_year*12)+F_month ;  // extra month er hisab ta korlam
+
                 String finalDay=Integer.toString(F_day);
                 String finalMonth=Integer.toString(F_month);
                 String finalYear=Integer.toString(F_year);
@@ -150,9 +152,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dayResult.setText(finalDay+" Day");
 
                // extraINformationFunction(finalYear,finalMonth,finalDay);
+                String Extra_month = Integer.toString(E_Month);       // extra month er integer k string koralm
 
                 extraYearResult.setText(finalYear);
-                extraMonthResult.setText(finalMonth);
+                extraMonthResult.setText(Extra_month);
+
+
+                nextBirthDay(F_month,F_day);
 
             }
         }
@@ -270,7 +276,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         extraHourResult.setText(ExtraHour);
         extraMinuteResult.setText(ExtraMinute);
         extraSecondResult.setText(ExtraSecond);
-
     }
 
     public int leapyear(int d,int m,int y){
@@ -279,5 +284,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             y--;
         }
         return y/4 - y/100 + y/400 ;
+    }
+
+    // next BirthDay Method...................................
+
+    private void nextBirthDay(int f_month, int f_day) {
+
+        if(f_month==0 && f_day==0){
+            nextDayResult.setText("0 Day");
+            nextMonthResult.setText("0 Month");
+        }
+
+        else{
+            int checkMonthDay=month[f_month];
+
+            int month=12-f_month;
+            int day=0;
+
+            if(f_day>0){
+                month--;
+            }
+            if(f_day==0){
+                day=0;
+            }else{
+                day=30-f_day;
+            }
+
+            String nextBirthDayInMonth = Integer.toString(month);
+            String nextBirthDayInDay = Integer.toString(day);
+
+            nextDayResult.setText(nextBirthDayInDay+" Day");
+            nextMonthResult.setText(nextBirthDayInMonth+" Month");
+
+        }
     }
 }

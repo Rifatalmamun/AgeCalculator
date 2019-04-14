@@ -146,6 +146,7 @@
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_marginLeft="10dp"
+            android:background="@drawable/buttonshap"
             />
         <Button
             android:id="@+id/ClearButton_id"
@@ -156,7 +157,8 @@
             android:textSize="19sp"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:layout_marginLeft="88dp" />
+            android:layout_marginLeft="88dp"
+            android:background="@drawable/buttonshap"/>
     </LinearLayout>
 
     <LinearLayout

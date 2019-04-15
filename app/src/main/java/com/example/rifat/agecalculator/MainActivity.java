@@ -1,6 +1,8 @@
 package com.example.rifat.agecalculator;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -114,10 +116,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String takeBirthYear=birthDateYear.getText().toString();
 
 
-            if(takeBirthDay.isEmpty() || takeBirthMonth.isEmpty() || takeBirthYear.isEmpty()){
+            if(takeBirthDay.isEmpty() || takeBirthMonth.isEmpty() || takeBirthYear.isEmpty()) {
 
                 Toast.makeText(getApplicationContext(), "Please Input DOB", Toast.LENGTH_SHORT).show();
-            }else{
+            }
+            else{
 
                 int cDay=Integer.parseInt(takeCurrentDay);
                 int cMonth=Integer.parseInt(takeCurrentMonth);
@@ -126,9 +129,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int bMonth=Integer.parseInt(takeBirthMonth);
                 int bYear=Integer.parseInt(takeBirthYear);
 
-                extraInformationMethod(bDay,bMonth,bYear,cDay,cMonth,cYear);
+                if((cYear<bYear) || ((cYear==bYear) && (cMonth<bMonth) || (bDay>31) || (cDay>31) || (bMonth>12) || (cMonth>12) || (cDay<1) || (cMonth<1) || (bDay<1) || (bMonth<1)  ) ){
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                    builder1.setMessage("Invalid Date!!! please check");
+                    builder1.setCancelable(true);
 
-                if(bDay>cDay){
+                    builder1.setPositiveButton(
+                            "ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }else{
+                    int yearDiff = cYear - bYear ;
+                    int monthDiff = cMonth - bMonth ;
+
+                    if(monthDiff < 0){
+
+                        yearDiff = yearDiff - 1;
+
+                        monthDiff = monthDiff + 12 ;
+                    }
+                    int dayDiff = cDay - bDay;
+                    if(dayDiff<0){
+                        if(monthDiff>0){
+                            monthDiff=monthDiff-1;
+                            dayDiff=dayDiff+MonthsToDays(cMonth-1,cYear);
+                        }else{
+                            yearDiff=yearDiff-1;
+                            monthDiff=11;
+                            dayDiff=dayDiff+MonthsToDays(cMonth-1,cYear);
+                        }
+                    }
+
+                    extraInformationMethod(bDay,bMonth,bYear,cDay,cMonth,cYear);
+
+                /*if(bDay>cDay){
                     cDay=cDay+month[bMonth-1];
                     cMonth=cMonth-1;
                 }
@@ -139,27 +179,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 int F_day=(cDay-bDay);
                 int F_month=(cMonth-bMonth);
-                int F_year=(cYear-bYear);
+                int F_year=(cYear-bYear);*/
 
-                int E_Month = (F_year*12)+F_month ;  // extra month er hisab ta korlam
+                    int E_Month = (yearDiff*12)+monthDiff ;  // extra month er hisab ta korlam
 
-                String finalDay=Integer.toString(F_day);
-                String finalMonth=Integer.toString(F_month);
-                String finalYear=Integer.toString(F_year);
+                    String finalDay=Integer.toString(dayDiff);
+                    String finalMonth=Integer.toString(monthDiff);
+                    String finalYear=Integer.toString(yearDiff);
 
-                yearResult.setText(finalYear+" Year");
-                monthResult.setText(finalMonth+" Month");
-                dayResult.setText(finalDay+" Day");
+                    yearResult.setText(finalYear+" Year");
+                    monthResult.setText(finalMonth+" Month");
+                    dayResult.setText(finalDay+" Day");
 
-               // extraINformationFunction(finalYear,finalMonth,finalDay);
-                String Extra_month = Integer.toString(E_Month);       // extra month er integer k string koralm
+                    // extraINformationFunction(finalYear,finalMonth,finalDay);
+                    String Extra_month = Integer.toString(E_Month);       // extra month er integer k string koralm
 
-                extraYearResult.setText(finalYear);
-                extraMonthResult.setText(Extra_month);
+                    extraYearResult.setText(finalYear);
+                    extraMonthResult.setText(Extra_month);
 
-
-                nextBirthDay(F_month,F_day);
-
+                    nextBirthDay(monthDiff,dayDiff,bMonth);
+                }
             }
         }
         if(v.getId()==R.id.ClearButton_id){
@@ -171,6 +210,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dayResult.setText("0 Day");
             nextMonthResult.setText("0 Month");
             nextDayResult.setText("0 Day");
+            extraYearResult.setText("0");
+            extraMonthResult.setText("0");
+            extraWeakResult.setText("0");
+            extraDayResult.setText("0");
+            extraHourResult.setText("0");
+            extraMinuteResult.setText("0");
+            extraSecondResult.setText("0");
         }
     }
 
@@ -288,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // next BirthDay Method...................................
 
-    private void nextBirthDay(int f_month, int f_day) {
+    private void nextBirthDay(int f_month, int f_day,int b_month) {
 
         if(f_month==0 && f_day==0){
             nextDayResult.setText("0 Day");
@@ -296,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         else{
-            int checkMonthDay=month[f_month];
+            int checkMonthDay=month[b_month];
 
             int month=12-f_month;
             int day=0;
@@ -305,10 +351,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 month--;
             }
             if(f_day==0){
-                day=0;
-            }else{
-                day=30-f_day;
+                if(checkMonthDay==31){
+                    f_day=31;
+                }else{
+                    f_day=30;
+                }
             }
+                day=checkMonthDay-f_day;
+
 
             String nextBirthDayInMonth = Integer.toString(month);
             String nextBirthDayInDay = Integer.toString(day);
@@ -316,6 +366,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             nextDayResult.setText(nextBirthDayInDay+" Day");
             nextMonthResult.setText(nextBirthDayInMonth+" Month");
 
+        }
+    }
+
+
+    // take day of month from here................................
+
+    public static int MonthsToDays(int tMonth, int tYear) {
+        if (tMonth == 1 || tMonth == 3 || tMonth == 5 || tMonth == 7
+                || tMonth == 8 || tMonth == 10 || tMonth == 12) {
+            return 31;
+        } else if (tMonth == 2) {
+            if (tYear % 4 == 0) {
+                return 29;
+            } else {
+                return 28;
+            }
+        } else {
+            return 30;
         }
     }
 }

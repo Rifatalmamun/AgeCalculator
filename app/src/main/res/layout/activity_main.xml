@@ -146,7 +146,7 @@
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/buttonshap"
+
             />
         <Button
             android:id="@+id/ClearButton_id"
@@ -158,7 +158,7 @@
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_marginLeft="88dp"
-            android:background="@drawable/buttonshap"/>
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -185,7 +185,7 @@
                 android:id="@+id/YearResultTextView_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23 Years"
+                android:text="0 Years"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -197,7 +197,7 @@
                 android:id="@+id/MonthResultTextView_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23 Month"
+                android:text="0 Month"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -208,7 +208,7 @@
                 android:id="@+id/DayResultTextView_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23 days"
+                android:text="0 days"
                 android:textSize="22sp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
@@ -241,7 +241,7 @@
                 android:id="@+id/NextBirthDayMonthResult_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23 Month"
+                android:text="0 Month"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -253,7 +253,7 @@
                 android:id="@+id/NextBirthdayDayResult_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23 Day"
+                android:text="0 Day"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"

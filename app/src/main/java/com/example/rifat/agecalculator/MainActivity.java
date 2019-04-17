@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private LinearLayout tenyearLinearLayout,tenYearTextViewLinearLayout;
     // declaration all the variable
 
     private TextView yearResult,monthResult,dayResult,nextMonthResult,nextDayResult,extraYearResult,extraMonthResult,extraWeakResult,extraDayResult,extraHourResult,extraMinuteResult,extraSecondResult;
@@ -28,13 +30,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatePickerDialog current_Date_Picker;
     private DatePickerDialog birth_Date_Picker;
-
     int month[]={31,28,31,30,31,30,31,31,30,31,30,31};  // define a string for all month day count;
+
+    // ten years er all variables
+
+    private TextView firstDate,secondDate,thirdDate,fourDate,fiveDate,sixDate,sevenDate,eightDate,nineDate,tenDate;
+    private TextView firstDay,secondDay,thirdDay,fourDay,fiveDay,sixDay,sevenDay,eightDay,nineDay,tenDay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // find all the variable
+        tenyearLinearLayout=(LinearLayout)findViewById(R.id.tenYearsBirthdayListLayout_id);
+        tenYearTextViewLinearLayout=(LinearLayout)findViewById(R.id.tenYearsTextViewLayout_id) ;
+        //..........................................................................................
+
+        firstDate=(TextView)findViewById(R.id.firstBirthdayDate_id);
+        secondDate=(TextView)findViewById(R.id.secondBirthdayDate_id);
+        thirdDate=(TextView)findViewById(R.id.thirdBirthdayDate_id);
+        fourDate=(TextView)findViewById(R.id.fourBirthdayDate_id);
+        fiveDate=(TextView)findViewById(R.id.fiveBirthdayDate_id);
+        sixDate=(TextView)findViewById(R.id.sixBirthdayDate_id);
+        sevenDate=(TextView)findViewById(R.id.sevenBirthdayDate_id);
+        eightDate=(TextView)findViewById(R.id.eightBirthdayDate_id);
+        nineDate=(TextView)findViewById(R.id.nineBirthdayDate_id);
+        tenDate=(TextView)findViewById(R.id.tenthBirthdayDate_id);
+
+        //..........................................................................................
+        //..........................................................................................
+
+        firstDay=(TextView)findViewById(R.id.firstBirthdayDay_id);
+        secondDay=(TextView)findViewById(R.id.secondBirthdayDay_id);
+        thirdDay=(TextView)findViewById(R.id.thirdBirthdayDay_id);
+        fourDay=(TextView)findViewById(R.id.fourBirthdayDay_id);
+        fiveDay=(TextView)findViewById(R.id.fiveBirthdayDay_id);
+        sixDay=(TextView)findViewById(R.id.sixBirthdayDay_id);
+        sevenDay=(TextView)findViewById(R.id.sevenBirthdayDay_id);
+        eightDay=(TextView)findViewById(R.id.eightBirthdayDay_id);
+        nineDay=(TextView)findViewById(R.id.nineBirthdayDay_id);
+        tenDay=(TextView)findViewById(R.id.tenthBirthdayDay_id);
+
+        //..........................................................................................
 
         currentDateDay=(EditText) findViewById(R.id.CurrentDateDay_id);
         currentDateMonth=(EditText)findViewById(R.id.CurrentDateMonth_id);
@@ -129,6 +166,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int bMonth=Integer.parseInt(takeBirthMonth);
                 int bYear=Integer.parseInt(takeBirthYear);
 
+                tenYearsFunction(bDay,bMonth,cYear);
+
                 if((cYear<bYear) || ((cYear==bYear) && (cMonth<bMonth) || (bDay>31) || (cDay>31) || (bMonth>12) || (cMonth>12) || (cDay<1) || (cMonth<1) || (bDay<1) || (bMonth<1)  ) ){
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
                     builder1.setMessage("Invalid Date!!! please check");
@@ -197,9 +236,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     extraYearResult.setText(finalYear);
                     extraMonthResult.setText(Extra_month);
 
-                    nextBirthDay(monthDiff,dayDiff,bMonth);
+                    nextBirthDay(monthDiff,dayDiff,cDay,cMonth,bDay,bMonth);
                 }
             }
+
+            tenyearLinearLayout.setVisibility(View.VISIBLE);
+            tenYearTextViewLinearLayout.setVisibility(View.VISIBLE);
         }
         if(v.getId()==R.id.ClearButton_id){
             birthDateDay.setText("");
@@ -217,8 +259,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             extraHourResult.setText("0");
             extraMinuteResult.setText("0");
             extraSecondResult.setText("0");
+
+
+            tenyearLinearLayout.setVisibility(View.GONE);
+            tenYearTextViewLinearLayout.setVisibility(View.GONE);
         }
     }
+
 
     // this is OpenCurrentDatePicker method....................................
     //.........................................................................
@@ -334,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // next BirthDay Method...................................
 
-    private void nextBirthDay(int f_month, int f_day,int b_month) {
+    private void nextBirthDay(int f_month, int f_day,int currentDay,int currentMonth,int birthdayDay,int birthdayMonth) {
 
         if(f_month==0 && f_day==0){
             nextDayResult.setText("0 Day");
@@ -342,7 +389,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         else{
-            int checkMonthDay=month[b_month];
+            int checkMonthDay=month[f_month];
 
             int month=12-f_month;
             int day=0;
@@ -366,6 +413,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             nextDayResult.setText(nextBirthDayInDay+" Day");
             nextMonthResult.setText(nextBirthDayInMonth+" Month");
 
+
         }
     }
 
@@ -386,4 +434,179 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return 30;
         }
     }
+
+
+
+    // ten year function here.................................................................
+
+    private void tenYearsFunction(int bDay, int bMonth, int cYear) {
+
+        int dayOne=bDay;
+        int dayTwo=bDay;
+        int dayThree=bDay;
+        int dayFour=bDay;
+        int dayFive=bDay;
+        int daySix=bDay;
+        int daySeven=bDay;
+        int dayEight=bDay;
+        int dayNine=bDay;
+        int dayTen=bDay;
+
+
+        int one,two,three,four,five,six,seven,eight,nine,ten;
+
+        one=cYear+1;
+        two=cYear+2;
+        three=cYear+3;
+        four=cYear+4;
+        five=cYear+5;
+        six=cYear+6;
+        seven=cYear+7;
+        eight=cYear+8;
+        nine=cYear+9;
+        ten=cYear+10;
+
+        if(bMonth==2 && bDay==28){
+            if(one%4==0){
+                dayOne++;
+            }
+            if(two%4==0){
+                dayTwo++;
+            }
+            if(three%4==0){
+                dayThree++;
+            }
+            if(four%4==0){
+                dayFour++;
+            }
+            if(five%4==0){
+                dayFive++;
+            }
+            if(six%4==0){
+                daySix++;
+            }
+            if(seven%4==0){
+                daySeven++;
+            }
+            if(eight%4==0){
+                dayEight++;
+            }
+            if(nine%4==0){
+                dayNine++;
+            }
+            if(ten%4==0){
+                dayTen++;
+            }
+        }
+
+        if(bMonth==2 && bDay==29){
+            if(one%4!=0){
+                dayOne--;
+            }
+            if(two%4!=0){
+                dayTwo--;
+            }
+            if(three%4!=0){
+                dayThree--;
+            }
+            if(four%4!=0){
+                dayFour--;
+            }
+            if(five%4!=0){
+                dayFive--;
+            }
+            if(six%4!=0){
+                daySix--;
+            }
+            if(seven%4!=0){
+                daySeven--;
+            }
+            if(eight%4!=0){
+                dayEight--;
+            }
+            if(nine%4!=0){
+                dayNine--;
+            }
+            if(ten%4!=0){
+                dayTen--;
+            }
+        }
+
+
+
+        String dOne=Integer.toString(dayOne);
+        String dTwo=Integer.toString(dayTwo);
+        String dThree=Integer.toString(dayThree);
+        String dFour=Integer.toString(dayFour);
+        String dFive=Integer.toString(dayFive);
+        String dSix=Integer.toString(daySix);
+        String dSeven=Integer.toString(daySeven);
+        String dEight=Integer.toString(dayEight);
+        String dNine=Integer.toString(dayNine);
+        String dTen=Integer.toString(dayTen);
+
+
+        String month=Integer.toString(bMonth);
+
+        if(month.equals("1")){
+            month="January";
+        }else if(month.equals("2")){
+            month="February";
+        }
+        else if(month.equals("3")){
+            month="March";
+        }
+        else if(month.equals("4")){
+            month="April";
+        }
+        else if(month.equals("5")){
+            month="May";
+        }
+        else if(month.equals("6")){
+            month="June";
+        }
+        else if(month.equals("7")){
+            month="July";
+        }
+        else if(month.equals("8")){
+            month="August";
+        }
+        else if(month.equals("9")){
+            month="September";
+        }
+        else if(month.equals("10")){
+            month="October";
+        }else if(month.equals("11")){
+            month="November";
+        }else if(month.equals("12")){
+            month="December";
+        }
+
+        String yearOne=Integer.toString(one);
+        String yearTwo=Integer.toString(two);
+        String yearThree=Integer.toString(three);
+        String yearFour=Integer.toString(four);
+        String yearFive=Integer.toString(five);
+        String yearSix=Integer.toString(six);
+        String yearSeven=Integer.toString(seven);
+        String yearEight=Integer.toString(eight);
+        String yearNine=Integer.toString(nine);
+        String yearTen=Integer.toString(ten);
+
+        firstDate.setText(dOne+" "+month+" "+yearOne);
+        secondDate.setText(dTwo+" "+month+" "+yearTwo);
+        thirdDate.setText(dThree+" "+month+" "+yearThree);
+        fourDate.setText(dFour+" "+month+" "+yearFour);
+        fiveDate.setText(dFive+" "+month+" "+yearFive);
+        sixDate.setText(dSix+" "+month+" "+yearSix);
+        sevenDate.setText(dSeven+" "+month+" "+yearSeven);
+        eightDate.setText(dEight+" "+month+" "+yearEight);
+        nineDate.setText(dNine+" "+month+" "+yearNine);
+        tenDate.setText(dTen+" "+month+" "+yearTen);
+
+
+    }
+
+
+
 }

@@ -146,7 +146,6 @@
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_marginLeft="10dp"
-
             />
         <Button
             android:id="@+id/ClearButton_id"
@@ -456,5 +455,269 @@
                 android:gravity="center_horizontal" />
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tenYearsTextViewLayout_id"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comming Birthday..."
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:background="#732f0d"
+            android:textColor="#ffffff"
+            android:padding="10dp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tenYearsBirthdayListLayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/firstBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/firstBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/secondBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/secondBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/thirdBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/thirdBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/fourBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fourBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/fiveBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fiveBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/sixBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/sixBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/sevenBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/sevenBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/eightBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/eightBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/nineBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nineBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tenthBirthdayDate_id"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="12/12/2020"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tenthBirthdayDay_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </LinearLayout>
 </ScrollView>

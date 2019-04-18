@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private LinearLayout tenyearLinearLayout,tenYearTextViewLinearLayout;
+    private LinearLayout tenyearLinearLayout;
     // declaration all the variable
 
     private TextView yearResult,monthResult,dayResult,nextMonthResult,nextDayResult,extraYearResult,extraMonthResult,extraWeakResult,extraDayResult,extraHourResult,extraMinuteResult,extraSecondResult;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         // find all the variable
         tenyearLinearLayout=(LinearLayout)findViewById(R.id.tenYearsBirthdayListLayout_id);
-        tenYearTextViewLinearLayout=(LinearLayout)findViewById(R.id.commingBirthdayLinearLayout_id) ;
+
         //..........................................................................................
 
         firstDate=(TextView)findViewById(R.id.firstBirthdayDate_id);
@@ -81,6 +83,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         birthDateMonth=(EditText)findViewById(R.id.BirthDateMonth_id);
         birthDateYear=(EditText)findViewById(R.id.BirthDateYear_id);
 
+        //................................................................ this is test case start line
+
+        birthDateDay.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                if(birthDateDay.getText().toString().trim().length()>2){
+                    birthDateMonth.requestFocus();
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(birthDateDay.getText().toString().trim().length()>2){
+                    birthDateDay.clearFocus();
+                    birthDateMonth.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                    birthDateDay.requestFocus();
+
+
+            }
+        });
+
+        //.................................................................this is text case finish line
+
         yearResult=(TextView)findViewById(R.id.YearResultTextView_id);
         monthResult=(TextView)findViewById(R.id.MonthResultTextView_id);
         dayResult=(TextView)findViewById(R.id.DayResultTextView_id);
@@ -105,11 +138,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         birthDateDay.setText("");
         birthDateMonth.setText("");
         birthDateYear.setText("");
-        yearResult.setText("0 Year");
-        monthResult.setText("0 Month");
-        dayResult.setText("0 Day");
-        nextMonthResult.setText("0 Month");
-        nextDayResult.setText("0 Day");
+        yearResult.setText("00");
+        monthResult.setText("00");
+        dayResult.setText("00");
+        nextMonthResult.setText("00");
+        nextDayResult.setText("00");
+        extraYearResult.setText("00");
+        extraMonthResult.setText("00");
+        extraWeakResult.setText("00");
+        extraDayResult.setText("00");
+        extraHourResult.setText("00");
+        extraMinuteResult.setText("00");
+        extraSecondResult.setText("00");
+
 
         // now set OnClicklistener............................................................
         currentDateCalenderPickerButton.setOnClickListener(this);
@@ -207,9 +248,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String finalMonth=Integer.toString(monthDiff);
                     String finalYear=Integer.toString(yearDiff);
 
-                    yearResult.setText(finalYear+" Year");
-                    monthResult.setText(finalMonth+" Month");
-                    dayResult.setText(finalDay+" Day");
+                    yearResult.setText(finalYear);
+                    monthResult.setText(finalMonth);
+                    dayResult.setText(finalDay);
 
                     // extraINformationFunction(finalYear,finalMonth,finalDay);
                     String Extra_month = Integer.toString(E_Month);       // extra month er integer k string koralm
@@ -218,32 +259,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     extraMonthResult.setText(Extra_month);
 
                     nextBirthDay(monthDiff,dayDiff,cDay,cMonth,bDay,bMonth);
+
+                    tenyearLinearLayout.setVisibility(View.VISIBLE);
                 }
             }
 
-            tenyearLinearLayout.setVisibility(View.VISIBLE);
-            tenYearTextViewLinearLayout.setVisibility(View.VISIBLE);
+
         }
         if(v.getId()==R.id.ClearButton_id){
             birthDateDay.setText("");
             birthDateMonth.setText("");
             birthDateYear.setText("");
-            yearResult.setText("0 Year");
-            monthResult.setText("0 Month");
-            dayResult.setText("0 Day");
-            nextMonthResult.setText("0 Month");
-            nextDayResult.setText("0 Day");
-            extraYearResult.setText("0");
-            extraMonthResult.setText("0");
-            extraWeakResult.setText("0");
-            extraDayResult.setText("0");
-            extraHourResult.setText("0");
-            extraMinuteResult.setText("0");
-            extraSecondResult.setText("0");
+            yearResult.setText("00");
+            monthResult.setText("00");
+            dayResult.setText("00");
+            nextMonthResult.setText("00");
+            nextDayResult.setText("00");
+            extraYearResult.setText("00");
+            extraMonthResult.setText("00");
+            extraWeakResult.setText("00");
+            extraDayResult.setText("00");
+            extraHourResult.setText("00");
+            extraMinuteResult.setText("00");
+            extraSecondResult.setText("00");
 
 
             tenyearLinearLayout.setVisibility(View.GONE);
-            tenYearTextViewLinearLayout.setVisibility(View.GONE);
         }
     }
 
@@ -365,8 +406,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void nextBirthDay(int f_month, int f_day,int currentDay,int currentMonth,int birthdayDay,int birthdayMonth) {
 
         if(f_month==0 && f_day==0){
-            nextDayResult.setText("0 Day");
-            nextMonthResult.setText("0 Month");
+            nextDayResult.setText("00");
+            nextMonthResult.setText("00");
         }
 
         else{
@@ -391,8 +432,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String nextBirthDayInMonth = Integer.toString(month);
             String nextBirthDayInDay = Integer.toString(day);
 
-            nextDayResult.setText(nextBirthDayInDay+" Day");
-            nextMonthResult.setText(nextBirthDayInMonth+" Month");
+            nextDayResult.setText(nextBirthDayInDay);
+            nextMonthResult.setText(nextBirthDayInMonth);
         }
     }
     // take day of month from here................................

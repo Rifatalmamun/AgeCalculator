@@ -2,20 +2,24 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f4f0f0"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+
+    >
 
     <LinearLayout
         android:id="@+id/currrentDateSectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical">
 
         <TextView
@@ -23,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Current Date: "
-            android:textStyle="bold"
+
             android:textSize="25sp"
             android:padding="5dp"
             android:textColor="#000000"
@@ -38,6 +42,7 @@
             android:background="@drawable/border">
 
             <EditText
+                android:maxLength="2"
                 android:id="@+id/CurrentDateDay_id"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
@@ -49,6 +54,7 @@
                 android:background="@null"
                 android:inputType="number"/>
             <EditText
+                android:maxLength="2"
                 android:id="@+id/CurrentDateMonth_id"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
@@ -61,6 +67,7 @@
                 android:inputType="number"/>
 
             <EditText
+                android:maxLength="4"
                 android:id="@+id/CurrentDateYear_id"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
@@ -95,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Birth Date: "
-            android:textStyle="bold"
+
             android:textSize="25sp"
             android:padding="5dp"
             android:textColor="#000000"
@@ -111,6 +118,8 @@
             android:orientation="horizontal">
 
             <EditText
+                android:maxLength="2"
+                android:imeOptions="actionNext"
                 android:id="@+id/BirthDateDay_id"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
@@ -122,6 +131,8 @@
                 android:background="@null"
                 android:inputType="number"/>
             <EditText
+                android:maxLength="2"
+                android:imeOptions="actionNext"
                 android:id="@+id/BirthDateMonth_id"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
@@ -133,6 +144,8 @@
                 android:background="@null"
                 android:inputType="number"/>
             <EditText
+                android:maxLength="4"
+                android:imeOptions="actionNext"
                 android:id="@+id/BirthDateYear_id"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
@@ -161,86 +174,146 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:weightSum="8">
 
         <Button
             android:id="@+id/CalculateAgeButton_id"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="5"
             android:layout_height="wrap_content"
             android:text="Calculate Age"
-            android:padding="10dp"
-            android:textSize="19sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
+
             android:textColor="#ffffff"
-            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/buttonshap"
+
             />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#f4f0f0"/>
         <Button
             android:id="@+id/ClearButton_id"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:text="Clear"
-            android:padding="10dp"
-            android:textSize="19sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
+
             android:textColor="#ffffff"
-            android:layout_marginLeft="88dp" />
+
+            android:background="@drawable/buttonshap"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/presentAgeSectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border">
 
         <TextView
             android:id="@+id/ResultTextView_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Present Age: "
-            android:textStyle="bold"
+
             android:textSize="25sp"
             android:padding="5dp"
             android:textColor="#000000"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Years"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshap"
+                android:padding="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Month"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshap"
+                android:padding="8dp"
+                android:layout_marginRight="15dp"/>
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Days"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="#ffffff"
+
+                android:background="@drawable/buttonshap"
+                android:padding="8dp"
+                android:layout_marginRight="5dp"/>
+
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/presentAgeShowLinearLayout_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/YearResultTextView_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="0 Years"
+                android:text="0"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#104e64"
+                android:gravity="center"
+                android:textColor="#000000"
+
                 android:padding="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"/>
             <TextView
                 android:id="@+id/MonthResultTextView_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="0 Month"
+                android:text="0"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#104e64"
+                android:gravity="center"
+                android:textColor="#000000"
                 android:padding="8dp"
                 android:layout_marginRight="15dp"/>
             <TextView
                 android:id="@+id/DayResultTextView_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="0 days"
+                android:text="0"
                 android:textSize="22sp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:background="#104e64"
-                android:padding="8dp"/>
+                android:gravity="center"
+                android:textColor="#000000"
+                android:padding="8dp"
+                android:layout_marginRight="5dp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -249,6 +322,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:orientation="vertical">
 
         <TextView
@@ -257,36 +331,76 @@
             android:layout_height="wrap_content"
             android:text="Next Brithday: "
             android:textSize="25sp"
-            android:textStyle="bold"
+
             android:textColor="#000000"
             android:padding="5dp"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Month"
+                android:gravity="center"
+                android:textSize="22sp"
+
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshap"
+                android:padding="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Day"
+                android:gravity="center"
+                android:textSize="22sp"
+
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshap"
+                android:padding="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/nextBirthdayShowLinearLayout_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/NextBirthDayMonthResult_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="0 Month"
+                android:text="00"
+                android:gravity="center"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#104e64"
+
+                android:textColor="#000000"
+
                 android:padding="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp" />
             <TextView
                 android:id="@+id/NextBirthdayDayResult_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="0 Day"
+                android:text="00"
+                android:gravity="center"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#104e64"
+
+                android:textColor="#000000"
                 android:padding="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp" />
@@ -300,6 +414,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/border"
         android:layout_marginTop="20dp">
         <TextView
             android:id="@+id/ExtraInformationTextView_id"
@@ -320,10 +435,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Year"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
@@ -331,9 +446,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
 
-                android:textStyle="bold"
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal"
                 />
@@ -347,19 +461,19 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Month"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
                 android:id="@+id/EI_monthTextView_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal" />
         </LinearLayout>
@@ -373,19 +487,19 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Weak"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
                 android:id="@+id/EI_weakTextView_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal" />
         </LinearLayout>
@@ -399,19 +513,19 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Day"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
                 android:id="@+id/EI_dayTextView_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal" />
         </LinearLayout>
@@ -425,19 +539,19 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Hour"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
                 android:id="@+id/EI_hourTextView_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal" />
         </LinearLayout>
@@ -451,19 +565,19 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Minute"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
                 android:id="@+id/EI_minuteTextView_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal" />
         </LinearLayout>
@@ -477,41 +591,22 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Second"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#13bf83"
                 android:padding="5dp"
                 />
             <TextView
                 android:id="@+id/EI_secondTextView_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textSize="23sp"
-                android:textColor="#280808"
+                android:textColor="#000000"
                 android:padding="5dp"
                 android:gravity="center_horizontal" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/commingBirthdayLinearLayout_id"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Comming Birthday..."
-            android:textStyle="bold"
-            android:textSize="26sp"
-            android:background="#732f0d"
-            android:textColor="#ffffff"
-            android:padding="10dp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -520,7 +615,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:orientation="vertical"
+        android:background="@drawable/border"
         android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comming Birthday..."
+            android:textStyle="bold"
+            android:textSize="26sp"
+
+            android:textColor="#000000"
+            android:padding="10dp" />
+
         <LinearLayout
             android:id="@+id/tenYearsFirstSubSectionLayout_id"
             android:layout_width="match_parent"
@@ -532,18 +639,19 @@
                 android:layout_height="wrap_content"
 
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/firstBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
-                android:layout_marginLeft="10dp" />
+                android:textSize="23sp"
+
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/tenYearsSecondSubSectionLayout_id"
@@ -556,16 +664,17 @@
                 android:layout_height="wrap_content"
 
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/secondBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -578,18 +687,17 @@
                 android:id="@+id/thirdBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp" />
             <TextView
                 android:id="@+id/thirdBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -602,18 +710,18 @@
                 android:id="@+id/fourBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+                 />
             <TextView
                 android:id="@+id/fourBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -626,18 +734,18 @@
                 android:id="@+id/fiveBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+                 />
             <TextView
                 android:id="@+id/fiveBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -650,18 +758,18 @@
                 android:id="@+id/sixBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+                />
             <TextView
                 android:id="@+id/sixBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -674,18 +782,18 @@
                 android:id="@+id/sevenBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+                />
             <TextView
                 android:id="@+id/sevenBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -698,18 +806,18 @@
                 android:id="@+id/eightBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+               />
             <TextView
                 android:id="@+id/eightBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -722,18 +830,18 @@
                 android:id="@+id/nineBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+                 />
             <TextView
                 android:id="@+id/nineBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
@@ -747,18 +855,18 @@
                 android:id="@+id/tenthBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-
+                android:padding="5dp"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="#13bf83"
+                android:textSize="23sp"
+                />
             <TextView
                 android:id="@+id/tenthBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="23sp"
 
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>

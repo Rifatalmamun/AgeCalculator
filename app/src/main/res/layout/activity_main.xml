@@ -12,125 +12,152 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/CurrentDateTextView_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Current Date: "
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:padding="5dp"
-        android:textColor="#000000"
-        android:layout_marginTop="10dp" />
     <LinearLayout
+        android:id="@+id/currrentDateSectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="1dp"
-        android:background="@drawable/border">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/CurrentDateDay_id"
-            android:layout_width="70sp"
+        <TextView
+            android:id="@+id/CurrentDateTextView_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="dd"
+            android:text="Current Date: "
             android:textStyle="bold"
-            android:textSize="23sp"
+            android:textSize="25sp"
             android:padding="5dp"
-            android:gravity="center_horizontal"
-            android:background="@null"
-            android:inputType="number"/>
-        <EditText
-            android:id="@+id/CurrentDateMonth_id"
-            android:layout_width="70sp"
-            android:layout_height="wrap_content"
-            android:hint="mm"
-            android:textStyle="bold"
-            android:padding="5dp"
-            android:textSize="23sp"
-            android:gravity="center_horizontal"
-            android:background="@null"
-            android:inputType="number"/>
+            android:textColor="#000000"
+            android:layout_marginTop="10dp" />
 
-        <EditText
-            android:id="@+id/CurrentDateYear_id"
-            android:layout_width="70sp"
+        <LinearLayout
+            android:id="@+id/currentDateShowLinearLayout_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:gravity="center_horizontal"
-            android:hint="yyyy"
-            android:inputType="number"
-            android:padding="5dp"
-            android:textSize="23sp"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/CurrentDataCalender_id"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="70dp"
-            android:background="@drawable/calendericon" />
+            android:orientation="horizontal"
+            android:padding="1dp"
+            android:background="@drawable/border">
+
+            <EditText
+                android:id="@+id/CurrentDateDay_id"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:hint="dd"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:background="@null"
+                android:inputType="number"/>
+            <EditText
+                android:id="@+id/CurrentDateMonth_id"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:hint="mm"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textSize="23sp"
+                android:gravity="center_horizontal"
+                android:background="@null"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/CurrentDateYear_id"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center_horizontal"
+                android:hint="yyyy"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/CurrentDataCalender_id"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="70dp"
+                android:background="@drawable/calendericon" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/BirthDateTextView_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Birth Date: "
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:padding="5dp"
-        android:textColor="#000000"
-        android:layout_marginTop="10dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:padding="1dp"
-        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/BirthDateDay_id"
-            android:layout_width="70sp"
+
+
+    <LinearLayout
+        android:id="@+id/brithDateSectionLinearLayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/BirthDateTextView_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="dd"
+            android:text="Birth Date: "
             android:textStyle="bold"
-            android:textSize="23sp"
+            android:textSize="25sp"
             android:padding="5dp"
-            android:gravity="center_horizontal"
-            android:background="@null"
-            android:inputType="number"/>
-        <EditText
-            android:id="@+id/BirthDateMonth_id"
-            android:layout_width="70sp"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp" />
+
+
+        <LinearLayout
+            android:id="@+id/brithDateShowLinearLayout_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="mm"
-            android:textStyle="bold"
-            android:textSize="23sp"
-            android:padding="5dp"
-            android:gravity="center_horizontal"
-            android:background="@null"
-            android:inputType="number"/>
-        <EditText
-            android:id="@+id/BirthDateYear_id"
-            android:layout_width="70sp"
-            android:layout_height="wrap_content"
-            android:hint="yyyy"
-            android:textStyle="bold"
-            android:textSize="23sp"
-            android:padding="5dp"
-            android:gravity="center_horizontal"
-            android:background="@null"
-            android:inputType="number"/>
-        <Button
-            android:id="@+id/BirthDateCalender_id"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="70dp"
-            android:background="@drawable/calendericon" />
+            android:background="@drawable/border"
+            android:padding="1dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/BirthDateDay_id"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:hint="dd"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:background="@null"
+                android:inputType="number"/>
+            <EditText
+                android:id="@+id/BirthDateMonth_id"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:hint="mm"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:background="@null"
+                android:inputType="number"/>
+            <EditText
+                android:id="@+id/BirthDateYear_id"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:hint="yyyy"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:background="@null"
+                android:inputType="number"/>
+            <Button
+                android:id="@+id/BirthDateCalender_id"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="70dp"
+                android:background="@drawable/calendericon" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
+
+
     <LinearLayout
+        android:id="@+id/buttonSectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -156,11 +183,11 @@
             android:textSize="19sp"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:layout_marginLeft="88dp"
-            />
+            android:layout_marginLeft="88dp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/presentAgeSectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -177,6 +204,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
+            android:id="@+id/presentAgeShowLinearLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -217,6 +245,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/nextBrithdaySectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -233,6 +262,7 @@
             android:padding="5dp"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
+            android:id="@+id/nextBirthdayShowLinearLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -262,9 +292,11 @@
                 android:layout_marginRight="15dp" />
 
         </LinearLayout>
-
     </LinearLayout>
+
+
     <LinearLayout
+        android:id="@+id/extraInformationSectionLinearLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -280,6 +312,7 @@
             android:padding="5dp"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
+            android:id="@+id/extrainfromationYearLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -306,6 +339,7 @@
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/extrainfromationMonthLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -327,10 +361,11 @@
                 android:textSize="23sp"
                 android:textColor="#280808"
                 android:padding="5dp"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/extrainfromationWeekLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -352,10 +387,11 @@
                 android:textSize="23sp"
                 android:textColor="#280808"
                 android:padding="5dp"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/extrainfromationDayLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -377,10 +413,11 @@
                 android:textSize="23sp"
                 android:textColor="#280808"
                 android:padding="5dp"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/extrainfromationHourLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -402,10 +439,11 @@
                 android:textSize="23sp"
                 android:textColor="#280808"
                 android:padding="5dp"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/extrainfromationMinuteLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -427,10 +465,11 @@
                 android:textSize="23sp"
                 android:textColor="#280808"
                 android:padding="5dp"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/extrainfromationSecondLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -455,8 +494,9 @@
                 android:gravity="center_horizontal" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/tenYearsTextViewLayout_id"
+        android:id="@+id/commingBirthdayLinearLayout_id"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -470,9 +510,7 @@
             android:textSize="26sp"
             android:background="#732f0d"
             android:textColor="#ffffff"
-            android:padding="10dp"
-
-            />
+            android:padding="10dp" />
 
     </LinearLayout>
 
@@ -482,9 +520,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:orientation="vertical"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
         <LinearLayout
+            android:id="@+id/tenYearsFirstSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -492,7 +530,7 @@
                 android:id="@+id/firstBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -501,13 +539,14 @@
                 android:id="@+id/firstBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsSecondSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -515,7 +554,7 @@
                 android:id="@+id/secondBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -524,13 +563,14 @@
                 android:id="@+id/secondBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsThirdSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -538,7 +578,7 @@
                 android:id="@+id/thirdBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -547,13 +587,14 @@
                 android:id="@+id/thirdBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsFourSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -561,7 +602,7 @@
                 android:id="@+id/fourBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -570,13 +611,14 @@
                 android:id="@+id/fourBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsFiveSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -584,7 +626,7 @@
                 android:id="@+id/fiveBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -593,13 +635,14 @@
                 android:id="@+id/fiveBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsSixSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -607,7 +650,7 @@
                 android:id="@+id/sixBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -616,13 +659,14 @@
                 android:id="@+id/sixBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsSevenSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -630,7 +674,7 @@
                 android:id="@+id/sevenBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -639,13 +683,14 @@
                 android:id="@+id/sevenBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsEightSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -653,7 +698,7 @@
                 android:id="@+id/eightBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -662,13 +707,14 @@
                 android:id="@+id/eightBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsNineSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -676,7 +722,7 @@
                 android:id="@+id/nineBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -685,13 +731,14 @@
                 android:id="@+id/nineBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tenYearsTenSubSectionLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -700,7 +747,7 @@
                 android:id="@+id/tenthBirthdayDate_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="12/12/2020"
+
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="20sp"
@@ -709,14 +756,12 @@
                 android:id="@+id/tenthBirthdayDay_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
-
-
     </LinearLayout>
 
 </LinearLayout>

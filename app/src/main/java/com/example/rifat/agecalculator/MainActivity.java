@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         // find all the variable
         tenyearLinearLayout=(LinearLayout)findViewById(R.id.tenYearsBirthdayListLayout_id);
-        tenYearTextViewLinearLayout=(LinearLayout)findViewById(R.id.tenYearsTextViewLayout_id) ;
+        tenYearTextViewLinearLayout=(LinearLayout)findViewById(R.id.commingBirthdayLinearLayout_id) ;
         //..........................................................................................
 
         firstDate=(TextView)findViewById(R.id.firstBirthdayDate_id);
@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         clearButton=(Button)findViewById(R.id.ClearButton_id);
         currentDateCalenderPickerButton=(Button)findViewById(R.id.CurrentDataCalender_id);
         birthDateCalenderPickerButton=(Button)findViewById(R.id.BirthDateCalender_id);
-
 
         // apps ta on hole sob value first a empty dekhabe
         birthDateDay.setText("");
@@ -166,23 +165,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int bMonth=Integer.parseInt(takeBirthMonth);
                 int bYear=Integer.parseInt(takeBirthYear);
 
-                tenYearsFunction(bDay,bMonth,cYear);
+                tenYearsFunction(bDay,bMonth,bYear,cDay,cMonth,cYear);
 
                 if((cYear<bYear) || ((cYear==bYear) && (cMonth<bMonth) || (bDay>31) || (cDay>31) || (bMonth>12) || (cMonth>12) || (cDay<1) || (cMonth<1) || (bDay<1) || (bMonth<1)  ) ){
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-                    builder1.setMessage("Invalid Date!!! please check");
-                    builder1.setCancelable(true);
 
-                    builder1.setPositiveButton(
-                            "ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
+                    invalidFunction("Invalid Date!!! please check");
 
-                    AlertDialog alert11 = builder1.create();
-                    alert11.show();
+                }else if( (cDay<bDay) && (cMonth<=bMonth) && (cYear<=bYear) ){
+
+                    invalidFunction("Invalid Date!!! please check");
+
+                }else if( (cDay==bDay) && (cMonth==bMonth) && (cYear==bYear) ){
+                    invalidFunction("Current Date & Brith Date Same");
                 }else{
                     int yearDiff = cYear - bYear ;
                     int monthDiff = cMonth - bMonth ;
@@ -206,19 +200,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                     extraInformationMethod(bDay,bMonth,bYear,cDay,cMonth,cYear);
-
-                /*if(bDay>cDay){
-                    cDay=cDay+month[bMonth-1];
-                    cMonth=cMonth-1;
-                }
-                if(bMonth>cMonth){
-                    cYear=cYear-1;
-                    cMonth=cMonth+12;
-                }
-
-                int F_day=(cDay-bDay);
-                int F_month=(cMonth-bMonth);
-                int F_year=(cYear-bYear);*/
 
                     int E_Month = (yearDiff*12)+monthDiff ;  // extra month er hisab ta korlam
 
@@ -412,12 +393,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             nextDayResult.setText(nextBirthDayInDay+" Day");
             nextMonthResult.setText(nextBirthDayInMonth+" Month");
-
-
         }
     }
-
-
     // take day of month from here................................
 
     public static int MonthsToDays(int tMonth, int tYear) {
@@ -439,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // ten year function here.................................................................
 
-    private void tenYearsFunction(int bDay, int bMonth, int cYear) {
+    private void tenYearsFunction(int bDay, int bMonth,int bYear,int cDay,int cMonth,int cYear) {
 
         int dayOne=bDay;
         int dayTwo=bDay;
@@ -455,16 +432,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         int one,two,three,four,five,six,seven,eight,nine,ten;
 
-        one=cYear+1;
-        two=cYear+2;
-        three=cYear+3;
-        four=cYear+4;
-        five=cYear+5;
-        six=cYear+6;
-        seven=cYear+7;
-        eight=cYear+8;
-        nine=cYear+9;
-        ten=cYear+10;
+        if(cMonth<bMonth){
+            one=cYear;
+        }else if((cMonth==bMonth) && (cDay<bDay) ){
+            one=cYear;
+        }else{
+            one=cYear+1;
+        }
+        two=one+1;
+        three=two+1;
+        four=three+1;
+        five=four+1;
+        six=five+1;
+        seven=six+1;
+        eight=seven+1;
+        nine=eight+1;
+        ten=nine+1;
 
         if(bMonth==2 && bDay==28){
             if(one%4==0){
@@ -604,9 +587,250 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nineDate.setText(dNine+" "+month+" "+yearNine);
         tenDate.setText(dTen+" "+month+" "+yearTen);
 
+        // new write code for tenYears birthday Day find.................
+
+
+        //................for 1st.......................
+        int y1=one;
+        int step1=y1%10;
+        y1=y1/10;
+        int last1Digit=((y1%10)*10)+step1;
+
+        int monthCode1=monthCodeFunction(bMonth);
+        int yearCode1=yearCodeFunction(one);
+
+        String s1_dayName=findDayNameFunction(dayOne,monthCode1,last1Digit,yearCode1);
+        firstDay.setText(s1_dayName);
+
+        //................for 2nd.......................
+        int y2=two;
+        int step2=y2%10;
+        y2=y2/10;
+        int last2Digit=((y2%10)*10)+step2;
+
+        int monthCode2=monthCodeFunction(bMonth);
+        int yearCode2=yearCodeFunction(two);
+
+        String s2_dayName=findDayNameFunction(dayTwo,monthCode2,last2Digit,yearCode2);
+        secondDay.setText(s2_dayName);
+
+        //................for 3rd.......................
+        int y3=three;
+        int step3=y3%10;
+        y3=y3/10;
+        int last3Digit=((y3%10)*10)+step3;
+
+        int monthCode3=monthCodeFunction(bMonth);
+        int yearCode3=yearCodeFunction(three);
+
+        String s3_dayName=findDayNameFunction(dayThree,monthCode3,last3Digit,yearCode3);
+        thirdDay.setText(s3_dayName);
+
+        //................for 4th.......................
+        int y4=four;
+        int step4=y4%10;
+        y4=y4/10;
+        int last4Digit=((y4%10)*10)+step4;
+
+        int monthCode4=monthCodeFunction(bMonth);
+        int yearCode4=yearCodeFunction(four);
+
+        String s4_dayName=findDayNameFunction(dayFour,monthCode4,last4Digit,yearCode4);
+        fourDay.setText(s4_dayName);
+
+        //................for 5th.......................
+        int y5=five;
+        int step5=y5%10;
+        y5=y5/10;
+        int last5Digit=((y5%10)*10)+step5;
+
+        int monthCode5=monthCodeFunction(bMonth);
+        int yearCode5=yearCodeFunction(five);
+
+        String s5_dayName=findDayNameFunction(dayFive,monthCode5,last5Digit,yearCode5);
+        fiveDay.setText(s5_dayName);
+
+        //................for 6th.......................
+        int y6=six;
+        int step6=y6%10;
+        y6=y6/10;
+        int last6Digit=((y6%10)*10)+step6;
+
+        int monthCode6=monthCodeFunction(bMonth);
+        int yearCode6=yearCodeFunction(six);
+
+        String s6_dayName=findDayNameFunction(daySix,monthCode6,last6Digit,yearCode6);
+        sixDay.setText(s6_dayName);
+
+        //................for 7th.......................
+        int y7=seven;
+        int step7=y7%10;
+        y7=y7/10;
+        int last7Digit=((y7%10)*10)+step7;
+
+        int monthCode7=monthCodeFunction(bMonth);
+        int yearCode7=yearCodeFunction(seven);
+
+        String s7_dayName=findDayNameFunction(daySeven,monthCode7,last7Digit,yearCode7);
+        sevenDay.setText(s7_dayName);
+
+        //................for 8th.......................
+        int y8=eight;
+        int step8=y8%10;
+        y8=y8/10;
+        int last8Digit=((y8%10)*10)+step8;
+
+        int monthCode8=monthCodeFunction(bMonth);
+        int yearCode8=yearCodeFunction(eight);
+
+        String s8_dayName=findDayNameFunction(dayEight,monthCode8,last8Digit,yearCode8);
+        eightDay.setText(s8_dayName);
+
+        //................for 9th.......................
+        int y9=nine;
+        int step9=y9%10;
+        y9=y9/10;
+        int last9Digit=((y9%10)*10)+step9;
+
+        int monthCode9=monthCodeFunction(bMonth);
+        int yearCode9=yearCodeFunction(nine);
+
+        String s9_dayName=findDayNameFunction(dayNine,monthCode9,last9Digit,yearCode9);
+        nineDay.setText(s9_dayName);
+
+        //................for 10th.......................
+        int y10=ten;
+        int step10=y10%10;
+        y10=y10/10;
+        int last10Digit=((y10%10)*10)+step10;
+
+        int monthCode10=monthCodeFunction(bMonth);
+        int yearCode10=yearCodeFunction(ten);
+
+        String s10_dayName=findDayNameFunction(dayTen,monthCode10,last10Digit,yearCode10);
+        tenDay.setText(s10_dayName);
 
     }
 
+    // monthCodeFunction Method..........................................................
+    private int monthCodeFunction(int month)
+    {
+        int c =0;
+
+        if(month==1){
+            c=0;
+        }
+        else if(month==2){
+            c=3;
+        }
+        else if(month==3){
+            c=3;
+        }
+        else if(month==4){
+            c=6;
+        }
+        else if(month==5){
+            c=1;
+        }
+        else if(month==6){
+            c=4;
+        }
+        else if(month==7){
+            c=6;
+        }
+        else if(month==8){
+            c=1;
+        }
+        else if(month==9){
+            c=5;
+        }
+        else if(month==10){
+            c=0;
+        }
+        else if(month==11){
+            c=3;
+        }
+        else if(month==12){
+            c=5;
+        }
+     return c;
+    }
+// yearCodeFunction Method..........................................................
+    private int yearCodeFunction(int year){
+
+        int c=0;
+
+        if(year>=1600 && year<=1699){
+            c=6;
+        }
+        else if(year>=1700 && year<=1799){
+            c=4;
+        }
+        else if(year>=1800 && year<=1899){
+            c=2;
+        }
+        else if(year>=1900 && year<=1999){
+            c=0;
+        }
+        else if(year>=2000 && year<=2099){
+            c=6;
+        }
+        return c;
+    }
 
 
+    // Day name method write here...............................
+
+    private String findDayNameFunction(int day, int monthCode, int last2Digit, int yearCode) {
+
+        int result;
+
+        result=day+monthCode+last2Digit+(last2Digit/4)+yearCode;
+        result=result%7;
+
+        String dayName="";
+
+        if(result==0){
+            dayName="Sunday";
+        }
+        else if(result==1){
+            dayName="Monday";
+        }
+        else if(result==2){
+            dayName="Tuesday";
+        }
+        else if(result==3){
+            dayName="Wednesday";
+        }
+        else if(result==4){
+            dayName="Thursday";
+        }
+        else if(result==5){
+            dayName="Friday";
+        }
+        else if(result==6){
+            dayName="Saturday";
+        }
+
+    return dayName;
+    }
+
+
+    private void invalidFunction(String message)
+    {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+        builder1.setMessage(message);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
 }

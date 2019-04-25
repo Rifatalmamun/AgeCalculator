@@ -2,13 +2,28 @@ package com.example.rifat.agecalculator;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -22,9 +37,15 @@ import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
+
+
     private LinearLayout tenyearLinearLayout;
     // declaration all the variable
+    ActionBar actionBar;  // this for action bar
+
 
     private TextView yearResult,monthResult,dayResult,nextMonthResult,nextDayResult,extraYearResult,extraMonthResult,extraWeakResult,extraDayResult,extraHourResult,extraMinuteResult,extraSecondResult;
     private EditText currentDateDay,currentDateMonth,currentDateYear,birthDateDay,birthDateMonth,birthDateYear;
@@ -39,10 +60,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView firstDate,secondDate,thirdDate,fourDate,fiveDate,sixDate,sevenDate,eightDate,nineDate,tenDate;
     private TextView firstDay,secondDay,thirdDay,fourDay,fiveDay,sixDay,sevenDay,eightDay,nineDay,tenDay;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        // My Apps onCreate start Here..........................................................................................
+
+
+        actionBar=getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0CAA95")));
+
         // find all the variable
         tenyearLinearLayout=(LinearLayout)findViewById(R.id.tenYearsBirthdayListLayout_id);
 
@@ -83,22 +135,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         birthDateMonth=(EditText)findViewById(R.id.BirthDateMonth_id);
         birthDateYear=(EditText)findViewById(R.id.BirthDateYear_id);
 
+        birthDateDay.requestFocus();
         //................................................................ this is test case start line
 
         birthDateDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                if(birthDateDay.getText().toString().trim().length()>2){
-                    birthDateMonth.requestFocus();
-                }
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(birthDateDay.getText().toString().trim().length()>2){
-                    birthDateDay.clearFocus();
+                String sday=birthDateDay.getText().toString().trim();
+
+                if(sday.length()>1 || (sday.equals("4")) || (sday.equals("5")) || (sday.equals("6")) || (sday.equals("7")) || (sday.equals("8")) || (sday.equals("9"))   ){
+
                     birthDateMonth.requestFocus();
                 }
             }
@@ -106,12 +157,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
 
-                    birthDateDay.requestFocus();
+            }
+        });
 
+        //.................................................................
+
+        birthDateMonth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String smonth=birthDateMonth.getText().toString().trim();
+
+                if(smonth.length()>1 || (smonth.equals("2")) || (smonth.equals("3"))  || (smonth.equals("4")) || (smonth.equals("5")) || (smonth.equals("6")) || (smonth.equals("7")) || (smonth.equals("8")) || (smonth.equals("9"))   ){
+
+                    birthDateYear.requestFocus();
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
 
+        //.................................................................this is text case finish line
+        //.................................................................
+
+        birthDateYear.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(birthDateYear.getText().toString().trim().length()>3){
+
+                    // This two line use for hiding soft keyboard after enter max length number in my edittex........
+
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(birthDateYear.getWindowToken(), 0);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         //.................................................................this is text case finish line
 
         yearResult=(TextView)findViewById(R.id.YearResultTextView_id);
@@ -173,9 +274,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentDateMonth.setText(currentMonth);
         currentDateYear.setText(currentYear);
     }
-
     @Override
     public void onClick(View v) {
+
+
         if(v.getId()==R.id.CurrentDataCalender_id){
             openCurrentDatePicker();
         }
@@ -183,6 +285,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             openBirthDatePicker();
         }
         if(v.getId()==R.id.CalculateAgeButton_id){
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(birthDateYear.getWindowToken(), 0);
+
             // take all Current Date day,month,year...................................................
             String takeCurrentDay=currentDateDay.getText().toString();
             String takeCurrentMonth=currentDateMonth.getText().toString();
@@ -283,125 +389,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             extraMinuteResult.setText("00");
             extraSecondResult.setText("00");
 
-
             tenyearLinearLayout.setVisibility(View.GONE);
-        }
-    }
 
-
-    // this is OpenCurrentDatePicker method....................................
-    //.........................................................................
-    private void openCurrentDatePicker() {
-
-        DatePicker datePicker1=new DatePicker(this);
-        int currentDay = datePicker1.getDayOfMonth();
-        int currentMonth = (datePicker1.getMonth());
-        int currentYear = datePicker1.getYear();
-
-        current_Date_Picker=new DatePickerDialog(this,
-
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        //textView.setText(dayOfMonth+"/"+(month+1)+"/"+year);
-                        String PCD=Integer.toString(dayOfMonth);
-                        String PCM=Integer.toString(month+1);
-                        String PCY=Integer.toString(year);
-
-                        currentDateDay.setText(PCD);
-                        currentDateMonth.setText(PCM);
-                        currentDateYear.setText(PCY);
-                    }
-                },currentYear,currentMonth,currentDay);
-
-        current_Date_Picker.show();
-    }
-    // this is openBirthDatePicker method......................................
-    //.........................................................................
-    private void openBirthDatePicker() {
-
-        DatePicker datePicker2=new DatePicker(this);
-        int birthDay=datePicker2.getDayOfMonth();
-        int birthMonth=datePicker2.getMonth();
-        int birthYear=datePicker2.getYear();
-
-        birth_Date_Picker=new DatePickerDialog(this,
-
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                        String PBD=Integer.toString(dayOfMonth);
-                        String PBM=Integer.toString(month+1);
-                        String PBY=Integer.toString(year);
-
-                        birthDateDay.setText(PBD);
-                        birthDateMonth.setText(PBM);
-                        birthDateYear.setText(PBY);
-                    }
-                },birthYear,birthMonth,birthDay);
-
-        birth_Date_Picker.show();
-    }
-    // Extra Information method.....................................................................
-
-    public void extraInformationMethod(int BirthDD,int BirthDM,int BirthDY,int CurrentDD,int CurrentDM,int CurrentDY)
-    {
-
-        //..................................First work for Birthday leapyear count
-
-        int n1 = BirthDY*365 + BirthDD;  // birth date er year k din a convert kore day gulo jog korlam
-
-        for(int i= 0;i<BirthDM-1;i++){
-            n1+=month[i];                // total er sathe month er day gulo jog korlam
+            birthDateDay.requestFocus();
         }
 
-        int BleapDay = leapyear(BirthDD,BirthDM,BirthDY);
-
-        int totalBirthDay = n1 + BleapDay;
-
-        //..................................Second work for Currenthday leapyear count
-
-        int n2 = CurrentDY*365 + CurrentDD;
-        for (int i=0;i<CurrentDM-1;i++){
-            n2+=month[i];
-        }
-
-        int CleapDay = leapyear(CurrentDD,CurrentDM,CurrentDY);
-        int totalCurrentDay = n2 + CleapDay;
-
-        int extraDay = totalCurrentDay - totalBirthDay ;
-
-        //Toast.makeText(getApplicationContext(),"Extra Day: "+extraDay,Toast.LENGTH_LONG).show();
-
-        int extraWeek = extraDay / 7;
-        int extraHour = extraDay * 24;
-        int extraMinute = extraDay * 1440;
-        int extraSecond = extraDay * 86400 ;
 
 
-        String ExtraDay = Integer.toString(extraDay);
-        String ExtraWeek = Integer.toString(extraWeek);
-        String ExtraHour = Integer.toString(extraHour);
-        String ExtraMinute = Integer.toString(extraMinute);
-        String ExtraSecond = Integer.toString(extraSecond);
-
-        extraDayResult.setText(ExtraDay);
-        extraWeakResult.setText(ExtraWeek);
-        extraHourResult.setText(ExtraHour);
-        extraMinuteResult.setText(ExtraMinute);
-        extraSecondResult.setText(ExtraSecond);
     }
 
-    public int leapyear(int d,int m,int y){
-
-        if(m<2){
-            y--;
-        }
-        return y/4 - y/100 + y/400 ;
-    }
-
-    // next BirthDay Method...................................
+// next BirthDay Method...................................
 
     private void nextBirthDay(int f_month, int f_day,int currentDay,int currentMonth,int birthdayDay,int birthdayMonth) {
 
@@ -426,8 +423,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     f_day=30;
                 }
             }
-                day=checkMonthDay-f_day;
-
+            day=checkMonthDay-f_day;
 
             String nextBirthDayInMonth = Integer.toString(month);
             String nextBirthDayInDay = Integer.toString(day);
@@ -436,25 +432,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             nextMonthResult.setText(nextBirthDayInMonth);
         }
     }
-    // take day of month from here................................
-
-    public static int MonthsToDays(int tMonth, int tYear) {
-        if (tMonth == 1 || tMonth == 3 || tMonth == 5 || tMonth == 7
-                || tMonth == 8 || tMonth == 10 || tMonth == 12) {
-            return 31;
-        } else if (tMonth == 2) {
-            if (tYear % 4 == 0) {
-                return 29;
-            } else {
-                return 28;
-            }
-        } else {
-            return 30;
-        }
-    }
-
-
-
     // ten year function here.................................................................
 
     private void tenYearsFunction(int bDay, int bMonth,int bYear,int cDay,int cMonth,int cYear) {
@@ -556,8 +533,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-
-
         String dOne=Integer.toString(dayOne);
         String dTwo=Integer.toString(dayTwo);
         String dThree=Integer.toString(dayThree);
@@ -629,7 +604,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tenDate.setText(dTen+" "+month+" "+yearTen);
 
         // new write code for tenYears birthday Day find.................
-
 
         //................for 1st.......................
         int y1=one;
@@ -753,6 +727,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
     // monthCodeFunction Method..........................................................
     private int monthCodeFunction(int month)
     {
@@ -794,9 +769,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(month==12){
             c=5;
         }
-     return c;
+        return c;
     }
-// yearCodeFunction Method..........................................................
+    // yearCodeFunction Method..........................................................
     private int yearCodeFunction(int year){
 
         int c=0;
@@ -853,9 +828,135 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dayName="Saturday";
         }
 
-    return dayName;
+        return dayName;
     }
 
+
+    // this is openBirthDatePicker method......................................
+    //.........................................................................
+    private void openBirthDatePicker() {
+
+        DatePicker datePicker2=new DatePicker(this);
+        int birthDay=datePicker2.getDayOfMonth();
+        int birthMonth=datePicker2.getMonth();
+        int birthYear=datePicker2.getYear();
+
+        birth_Date_Picker=new DatePickerDialog(this,
+
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        String PBD=Integer.toString(dayOfMonth);
+                        String PBM=Integer.toString(month+1);
+                        String PBY=Integer.toString(year);
+
+                        birthDateDay.setText(PBD);
+                        birthDateMonth.setText(PBM);
+                        birthDateYear.setText(PBY);
+                    }
+                },birthYear,birthMonth,birthDay);
+
+        birth_Date_Picker.show();
+    }
+
+    // this is OpenCurrentDatePicker method....................................
+    //.........................................................................
+    private void openCurrentDatePicker() {
+
+        DatePicker datePicker1=new DatePicker(this);
+        int currentDay = datePicker1.getDayOfMonth();
+        int currentMonth = (datePicker1.getMonth());
+        int currentYear = datePicker1.getYear();
+
+        current_Date_Picker=new DatePickerDialog(this,
+
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        //textView.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                        String PCD=Integer.toString(dayOfMonth);
+                        String PCM=Integer.toString(month+1);
+                        String PCY=Integer.toString(year);
+
+                        currentDateDay.setText(PCD);
+                        currentDateMonth.setText(PCM);
+                        currentDateYear.setText(PCY);
+                    }
+                },currentYear,currentMonth,currentDay);
+
+        current_Date_Picker.show();
+    }
+
+    // Extra Information method.....................................................................
+
+    public void extraInformationMethod(int BirthDD,int BirthDM,int BirthDY,int CurrentDD,int CurrentDM,int CurrentDY)
+    {
+
+        //..................................First work for Birthday leapyear count
+
+        int n1 = BirthDY*365 + BirthDD;  // birth date er year k din a convert kore day gulo jog korlam
+
+        for(int i= 0;i<BirthDM-1;i++){
+            n1+=month[i];                // total er sathe month er day gulo jog korlam
+        }
+
+        int BleapDay = leapyear(BirthDD,BirthDM,BirthDY);
+
+        int totalBirthDay = n1 + BleapDay;
+
+        //..................................Second work for Currenthday leapyear count
+
+        int n2 = CurrentDY*365 + CurrentDD;
+        for (int i=0;i<CurrentDM-1;i++){
+            n2+=month[i];
+        }
+
+        int CleapDay = leapyear(CurrentDD,CurrentDM,CurrentDY);
+        int totalCurrentDay = n2 + CleapDay;
+
+        int extraDay = totalCurrentDay - totalBirthDay ;
+
+        //Toast.makeText(getApplicationContext(),"Extra Day: "+extraDay,Toast.LENGTH_LONG).show();
+
+        int extraWeek = extraDay / 7;
+        int extraHour = extraDay * 24;
+        int extraMinute = extraDay * 1440;
+        int extraSecond = extraDay * 86400 ;
+
+        if(extraSecond<0){
+            extraSecondResult.setText("N/A");
+        }
+        else{
+            String ExtraSecond = Integer.toString(extraSecond);
+            extraSecondResult.setText(ExtraSecond);
+        }
+
+        if(extraMinute<0){
+            extraMinuteResult.setText("N/A");
+        }
+        else{
+            String ExtraMinute = Integer.toString(extraMinute);
+            extraMinuteResult.setText(ExtraMinute);
+        }
+
+        String ExtraDay = Integer.toString(extraDay);
+        String ExtraWeek = Integer.toString(extraWeek);
+        String ExtraHour = Integer.toString(extraHour);
+
+        extraDayResult.setText(ExtraDay);
+        extraWeakResult.setText(ExtraWeek);
+        extraHourResult.setText(ExtraHour);
+
+    }
+
+    public int leapyear(int d,int m,int y){
+
+        if(m<2){
+            y--;
+        }
+        return y/4 - y/100 + y/400 ;
+    }
 
     private void invalidFunction(String message)
     {
@@ -874,4 +975,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+    // take day of month from here................................
+
+    public static int MonthsToDays(int tMonth, int tYear) {
+        if (tMonth == 1 || tMonth == 3 || tMonth == 5 || tMonth == 7
+                || tMonth == 8 || tMonth == 10 || tMonth == 12) {
+            return 31;
+        } else if (tMonth == 2) {
+            if (tYear % 4 == 0) {
+                return 29;
+            } else {
+                return 28;
+            }
+        } else {
+            return 30;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }
+
